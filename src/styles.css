@@ -1,4 +1,32 @@
+/* GLOBAL STYLES */
+
 body {
     width: 250px;
-    height: 250px;
+    height: 400px;
+    background-color: rgb(23, 1, 41);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    /* background-size: cover; */
 }
+
+.space-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* space man styles */
+
+#astroman {
+    width: 100px;
+    height: auto;
+    animation: space-man-float 5s infinite ease-in-out;
+}
+
+@keyframes space-man-float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-15px, -15px) rotate(15deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
