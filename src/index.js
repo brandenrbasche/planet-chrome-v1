@@ -9,7 +9,7 @@ fetch('https://api.nasa.gov/planetary/apod?api_key=hrVSbl9GRkS9mNuy1pungArLHuYov
         if (data.media_type === 'image') {
             document.body.style.backgroundImage = `url(${data.url})`;
         } else {
-            console.log('NASA Picture of the Day is not an image.');
+            console.log('NASA Picture of the Day error.');
             // set a default image
             document.body.style.backgroundImage = 'url(assets/default.jpg)';
         }
