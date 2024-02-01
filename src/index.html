@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planet Chrome</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="./index.js" defer></script>
+    <script src="./background.js" defer></script>
 </head>
+
 <body>
+    <div class="zero-g-button">
+        <!-- <div></div> -->
+        <div class="oxygen-meter" id="oxygenMeterDiv">
+            <p id="oxygenLevel">Oxygen level: 50</p>
+        </div>
+        <img class="galaxy-icon" id="zeroGToggle" src="./assets/galaxy.png">
+    </div>
     <div class="space-container">
-        <p id="oxygenLevel">oxygen level</p>
-        <div class="astroman">
+        <!-- <div class="oxygen-meter" id="oxygenMeterDiv">
+            <p id="oxygenLevel">Oxygen level: 50</p>
+        </div> -->
+
+        <div class="astroman" id="astroman-div">
             <img id="astroman" src="./assets/astroman.png">
         </div>
     </div>
 </body>
+
 </html>

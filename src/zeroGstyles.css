@@ -1,0 +1,14 @@
+* {
+    animation: space-man-float 5s infinite ease-in-out;
+    background-color: red;
+}
+
+body {
+    background-color: red !important;
+}
+
+@keyframes space-man-float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-15px, -15px) rotate(15deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }

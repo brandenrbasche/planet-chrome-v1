@@ -1,20 +1,40 @@
 /* GLOBAL STYLES */
 
 body {
-    width: 250px;
-    height: 400px;
+    width: 300px;
+    height: 500px;
     background-color: rgb(23, 1, 41);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 5px 10px;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
     /* background-position: center; */
     /* background-size: cover; */
 }
 
 .space-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.zero-g-button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.galaxy-icon {
+    width: 25px;
+    height: 25px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.galaxy-icon:hover {
+    filter: brightness(2);
+    transition: .5s ease-in-out;
 }
 
 /* space man styles */
@@ -23,18 +43,47 @@ body {
     width: 100px;
     height: auto;
     animation: space-man-float 5s infinite ease-in-out;
+    position: absolute;
+}
+
+.astroman-div {
+    position: absolute;
 }
 
 @keyframes space-man-float {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(-15px, -15px) rotate(15deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
-  }
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
 
-  /* oxygen */ 
+    50% {
+        transform: translate(-15px, -15px) rotate(15deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+/* oxygen */
+
+.oxygen-meter {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 50%;
+    height: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+}
+
+.oxygen-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
 
 #oxygenLevel {
     width: 100%;
     height: 20px;
-    background-color: #00ff00;
+    /* background-color: #00ff00; */
 }
