@@ -21,4 +21,15 @@ fetch('https://api.nasa.gov/planetary/apod?api_key=hrVSbl9GRkS9mNuy1pungArLHuYov
     });
 
 
-    // pull browser history and log to console 
+// oxygen functionality 
+let oxygenLevel = 0;
+
+document.addEventListener('keydown', function() {
+    oxygenLevel++;
+    document.getElementById('oxygenLevel').textContent = `Oxygen level: ${oxygenLevel}`;
+});
+
+    
+
+    
+    
