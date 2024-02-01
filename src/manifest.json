@@ -19,5 +19,7 @@
 
     
 
-    "permissions": ["https://api.nasa.gov/"]
+    "host_permissions": ["https://api.nasa.gov/*"
+]
+
 }
