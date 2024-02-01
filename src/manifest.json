@@ -4,22 +4,22 @@
     "description": "Planet Chrome chrome extension",
     "manifest_version": 3,
     "author": "Devin Carrick & Branden Basche",
-    "action":{
+    "action": {
         "default_popup": "index.html",
         "default_title": "Planet Chrome"
     },
-
-    
+    "permissions" : ["history"],
     "content_scripts": [
         {
-            "matches": ["<all_urls>"],
-            "js": ["index.js"]
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "index.js"
+            ]
         }
     ],
-
-    
-
-    "host_permissions": ["https://api.nasa.gov/*"
-]
-
+    "host_permissions": [
+        "https://api.nasa.gov/*"
+    ]
 }
