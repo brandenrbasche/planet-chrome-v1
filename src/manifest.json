@@ -1,0 +1,11 @@
+{
+    "name": "Planet Chrome",
+    "version": "1.0.0",
+    "description": "Planet Chrome chrome extension",
+    "manifest_version": 3,
+    "author": "Devin Carrick & Branden Basche",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Planet Chrome"
+    }
+}
