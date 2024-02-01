@@ -12,6 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const zeroGButton = document.getElementById('zeroGToggle');
     let zeroG = false;
 
+    async function getCurrentTab() {
+        let queryOptions = {active: true, lastFocusedWindow: true};
+        let [tab] = await chrome.tabs.query(queryOptions);
+        return tab;
+    }
+
+    let currentTab = getCurrentTab();
+    console.log('logging current tab: ', currentTab.then(data => data.url).catch(e => console.log('error: ', e)));
+    // console.log('logging current tab: ', getCurrentTab().then(data => { return data.url }).catch(e => console.log('error: ', e)));
     // let activeTab = chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     //     return tabs[0].id;
     // });
@@ -50,8 +59,8 @@ fetch('https://api.nasa.gov/planetary/apod?api_key=hrVSbl9GRkS9mNuy1pungArLHuYov
     })
     .then(data => {
         if (data.media_type === 'image') {
-            // document.body.style.backgroundImage = `url(${data.url})`;
-            spaceContainer.style.backgroundImage = `url(${data.url})`;
+            document.body.style.backgroundImage = `url(${data.url})`;
+            // spaceContainer.style.backgroundImage = `url(${data.url})`;
         } else {
             console.log('NASA Picture of the Day error.');
             // set a default image
@@ -74,6 +83,7 @@ let translateIntervalUp = 0;
 let decreaseInterval = null;
 let increaseInterval = null;
 let oxygenMeterDiv = document.getElementById('oxygenMeterDiv');
+let oxygenMeterText = document.getElementById('oxygenLevel');
 let astroman = document.getElementById('astroman');
 
 function decreaseOxygen() {
@@ -81,8 +91,11 @@ function decreaseOxygen() {
     setTimeout(this.boundOxygenWidth, 500)
     if (oxygenLevel > 0) {
         oxygenLevel--;
+        setOxygenColor();
+        translateIntervalUp = 0;
         oxygenMeterDiv.setAttribute('style', `width: ${oxygenLevel}%; transition: .5s ease-in-out;`);
-        astroman.setAttribute('style', `margin-top: ${translateInterval += 5}px; transition: .5s ease-in-out;`)
+        // astroman.setAttribute('style', `margin-top: ${translateInterval += 5}px; transition: .5s ease-in-out;`);
+        astroman.setAttribute('style', `margin-top: ${translateInterval += 1}vh; transition: .5s ease-in-out;`)
     } else {
         clearInterval(decreaseInterval); // stop decreasing when oxygen level reaches 0
     }
@@ -92,15 +105,20 @@ function decreaseOxygen() {
 function increaseOxygen() {
     // setTimeout(this.boundOxygenWidth);
     if (oxygenLevel < 100) {
-        oxygenLevel++;
+        oxygenLevel ++;
+        setOxygenColor();
+        translateInterval = 0;
         oxygenMeterDiv.setAttribute('style', `width: ${oxygenLevel}%; transition: .5s ease-in-out;`);
-        astroman.setAttribute('style', `margin-bottom: ${translateIntervalUp += 5}px; transition: .5s ease-in-out;`)
+        // astroman.setAttribute('style', `margin-bottom: ${translateIntervalUp += 5}px; transition: .5s ease-in-out;`)
+        astroman.setAttribute('style', `margin-bottom: ${translateIntervalUp += 1}vh; transition: .5s ease-in-out;`)
     } else return;
 }
 
-// function setOxygenColor() {
-//     if (oxygenLevel >= 50) oxygenMeterDiv
-// }
+function setOxygenColor() {
+    if (oxygenLevel >= 50) oxygenMeterText.setAttribute('style', 'color: green;');
+    else if (oxygenLevel < 50 && oxygenLevel >= 25) oxygenMeterText.setAttribute('style', 'color: rgb(212, 205, 0)');
+    else oxygenMeterText.setAttribute('style', 'color: red');
+}
 
 this.boundOxygenWidth = () => {
     if (oxygenLevel <= 0) return;
@@ -110,6 +128,7 @@ this.boundOxygenWidth = () => {
 document.addEventListener('keydown', function() {
     oxygenLevel++;
     increaseOxygen();
+    // setTimeout(increaseOxygen, 10);
     if (oxygenLevel > 100) oxygenLevel = 100; // limit the oxygen level to 100
     document.getElementById('oxygenLevel').textContent = `Oxygen level: ${oxygenLevel}`;
     document.getElementById('oxygenLevel').style.width = oxygenLevel;
